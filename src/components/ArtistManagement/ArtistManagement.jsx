@@ -4,22 +4,22 @@ import React, { useState, useMemo } from "react";
 // The initial dataset is updated to match the Artist Management screenshot,
 // including 'followerCount' and 'songCount' fields.
 const initialArtists = [
-  { id: 1, name: "Karl Wolf", avatar: "/image/artist-1.png", followerCount: "1.2M", songCount: 564, status: "Active" },
-  { id: 2, name: "Brett Jordan", avatar: "/image/artist-2.png", followerCount: "852K", songCount: 464, status: "Inactive" },
-  { id: 3, name: "Ben Iwara", avatar: "/image/artist-3.png", followerCount: "740K", songCount: 564, status: "Active" },
-  { id: 4, name: "Kristin Watson", avatar: "/image/artist-4.png", followerCount: "658K", songCount: 264, status: "Active" },
-  { id: 5, name: "SAINT MARBEL", avatar: "/image/artist-5.png", followerCount: "526K", songCount: 184, status: "Active" },
-  { id: 6, name: "Alex Carter", avatar: "/image/artist-6.png", followerCount: "458K", songCount: 364, status: "Blocked" },
-  { id: 7, name: "Hidden Pathways", avatar: "/image/artist-7.png", followerCount: "325K", songCount: 164, status: "Active" },
-  { id: 8, name: "City Lights", avatar: "/image/artist-8.png", followerCount: "257K", songCount: 264, status: "Inactive" },
-  { id: 9, name: "Ghetto Love", avatar: "/image/artist-9.png", followerCount: "256K", songCount: 164, status: "Inactive" },
-  { id: 10, name: "Ghetto Love", avatar: "/image/artist-10.png", followerCount: "154K", songCount: 124, status: "Inactive" },
-  { id: 11, name: "Elizeu Dias", avatar: "/image/artist-11.png", followerCount: "67K", songCount: 134, status: "Blocked" },
+  { id: 1, name: "Karl Wolf", avatar: "/image/song-1.png", followerCount: "1.2M", songCount: 564, status: "Active" },
+  { id: 2, name: "Brett Jordan", avatar: "/image/song-2.png", followerCount: "852K", songCount: 464, status: "Inactive" },
+  { id: 3, name: "Ben Iwara", avatar: "/image/song-3.png", followerCount: "740K", songCount: 564, status: "Active" },
+  { id: 4, name: "Kristin Watson", avatar: "/image/song-4.png", followerCount: "658K", songCount: 264, status: "Active" },
+  { id: 5, name: "SAINT MARBEL", avatar: "/image/song-5.png", followerCount: "526K", songCount: 184, status: "Active" },
+  { id: 6, name: "Alex Carter", avatar: "/image/song-6.png", followerCount: "458K", songCount: 364, status: "Blocked" },
+  { id: 7, name: "Hidden Pathways", avatar: "/image/song-7.png", followerCount: "325K", songCount: 164, status: "Active" },
+  { id: 8, name: "City Lights", avatar: "/image/song-4.png", followerCount: "257K", songCount: 264, status: "Inactive" },
+  { id: 9, name: "Ghetto Love", avatar: "/image/song-7.png", followerCount: "256K", songCount: 164, status: "Inactive" },
+  { id: 10, name: "Ghetto Love", avatar: "/image/song-5.png", followerCount: "154K", songCount: 124, status: "Inactive" },
+  { id: 11, name: "Elizeu Dias", avatar: "/image/song-1.png", followerCount: "67K", songCount: 134, status: "Blocked" },
   // Added more artists for pagination demonstration
-  { id: 12, name: "Laura Evans", avatar: "/image/artist-12.png", followerCount: "55K", songCount: 98, status: "Active" },
-  { id: 13, name: "Echoes in Rain", avatar: "/image/artist-1.png", followerCount: "48K", songCount: 76, status: "Active" },
-  { id: 14, name: "Marcus Knight", avatar: "/image/artist-2.png", followerCount: "41K", songCount: 54, status: "Inactive" },
-  { id: 15, name: "The Voyagers", avatar: "/image/artist-3.png", followerCount: "32K", songCount: 45, status: "Blocked" },
+  { id: 12, name: "Laura Evans", avatar: "/image/song-1.png", followerCount: "55K", songCount: 98, status: "Active" },
+  { id: 13, name: "Echoes in Rain", avatar: "/image/song-1.png", followerCount: "48K", songCount: 76, status: "Active" },
+  { id: 14, name: "Marcus Knight", avatar: "/image/song-2.png", followerCount: "41K", songCount: 54, status: "Inactive" },
+  { id: 15, name: "The Voyagers", avatar: "/image/song-3.png", followerCount: "32K", songCount: 45, status: "Blocked" },
 ];
 
 const ArtistManagement = () => {

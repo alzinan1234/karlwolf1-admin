@@ -12,12 +12,12 @@ const initialUsers = [
   { id: 5, name: "Ralph Edwards", avatar: "/image/song-5.png", status: "Active", lastActivity: "2025-01-05", subscriptions: "Premium" },
   { id: 6, name: "Courtney Henry", avatar: "/image/song-6.png", status: "Blocked", lastActivity: "2024-11-05", subscriptions: "Premium" },
   { id: 7, name: "Bessie Cooper", avatar: "/image/song-7.png", status: "Active", lastActivity: "2024-10-03", subscriptions: "Premium" },
-  { id: 8, name: "Esther Howard", avatar: "/image/song-8.png", status: "Inactive", lastActivity: "2024-09-05", subscriptions: "Premium" },
-  { id: 9, name: "Eleanor Pena", avatar: "/image/song-9.png", status: "Inactive", lastActivity: "2024-03-25", subscriptions: "Premium" },
-  { id: 10, name: "Cameron Williamson", avatar: "/image/song-10.png", status: "Inactive", lastActivity: "2024-01-28", subscriptions: "Premium" },
-  { id: 11, name: "Guy Hawkins", avatar: "/image/song-11.png", status: "Blocked", lastActivity: "2024-01-28", subscriptions: "Free" },
+  { id: 8, name: "Esther Howard", avatar: "/image/song-4.png", status: "Inactive", lastActivity: "2024-09-05", subscriptions: "Premium" },
+  { id: 9, name: "Eleanor Pena", avatar: "/image/song-6.png", status: "Inactive", lastActivity: "2024-03-25", subscriptions: "Premium" },
+  { id: 10, name: "Cameron Williamson", avatar: "/image/song-1.png", status: "Inactive", lastActivity: "2024-01-28", subscriptions: "Premium" },
+  { id: 11, name: "Guy Hawkins", avatar: "/image/song-7.png", status: "Blocked", lastActivity: "2024-01-28", subscriptions: "Free" },
   // Added more users for pagination demonstration
-  { id: 12, name: "Jacob Jones", avatar: "/image/song-12.png", status: "Active", lastActivity: "2025-05-22", subscriptions: "Free" },
+  { id: 12, name: "Jacob Jones", avatar: "/image/song-1.png", status: "Active", lastActivity: "2025-05-22", subscriptions: "Free" },
   { id: 13, name: "Kristin Watson", avatar: "/image/song-1.png", status: "Active", lastActivity: "2025-05-21", subscriptions: "Premium" },
   { id: 14, name: "Theresa Webb", avatar: "/image/song-2.png", status: "Inactive", lastActivity: "2025-05-20", subscriptions: "Free" },
   { id: 15, name: "Darrell Steward", avatar: "/image/song-3.png", status: "Blocked", lastActivity: "2025-05-19", subscriptions: "Premium" },
@@ -25,9 +25,9 @@ const initialUsers = [
   { id: 17, name: "Wade Warren", avatar: "/image/song-5.png", status: "Active", lastActivity: "2025-05-17", subscriptions: "Free" },
   { id: 18, name: "Jane Cooper", avatar: "/image/song-6.png", status: "Inactive", lastActivity: "2025-05-16", subscriptions: "Premium" },
   { id: 19, name: "Robert Fox", avatar: "/image/song-7.png", status: "Active", lastActivity: "2025-05-15", subscriptions: "Free" },
-  { id: 20, name: "Darlene Robertson", avatar: "/image/song-8.png", status: "Blocked", lastActivity: "2025-05-14", subscriptions: "Premium" },
-  { id: 21, name: "Floyd Miles", avatar: "/image/song-9.png", status: "Active", lastActivity: "2025-05-13", subscriptions: "Free" },
-  { id: 22, name: "Jenny Wilson", avatar: "/image/song-10.png", status: "Inactive", lastActivity: "2025-05-12", subscriptions: "Premium" },
+  { id: 20, name: "Darlene Robertson", avatar: "/image/song-6.png", status: "Blocked", lastActivity: "2025-05-14", subscriptions: "Premium" },
+  { id: 21, name: "Floyd Miles", avatar: "/image/song-2.png", status: "Active", lastActivity: "2025-05-13", subscriptions: "Free" },
+  { id: 22, name: "Jenny Wilson", avatar: "/image/song-1.png", status: "Inactive", lastActivity: "2025-05-12", subscriptions: "Premium" },
 ];
 
 
@@ -314,12 +314,12 @@ const UserManagement = () => {
                 <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
               </svg>
             </div>
-            <button 
+            {/* <button 
               onClick={() => handleSendMessage()}
               className="px-4 py-2 bg-[#F7009E4D] text-[#F7009E] cursor-pointer rounded-md hover:bg-[#f7009e66] transition-colors text-sm font-medium whitespace-nowrap"
             >
               Push Message
-            </button>
+            </button> */}
           </div>
         </div>
 

@@ -145,7 +145,7 @@ const SubscribersManagement = () => {
             </button>
             {generatePagination().map((page, index) =>
                 typeof page === 'number' ? (
-                    <button key={`${page}-${index}`} onClick={() => handlePageChange(page)} className={`px-3 sm:px-4 py-2 rounded-md transition-colors text-sm ${ currentPage === page ? "bg-gradient-to-b from-[#818CF8] to-[#6366F1] text-white" : "bg-[#312B36] text-[#F9FAFB] border border-[#896E9C] hover:bg-[#423a47]" }`}>{page}</button>
+                    <button key={`${page}-${index}`} onClick={() => handlePageChange(page)} className={`px-3 sm:px-4 py-2 rounded-md transition-colors text-sm ${ currentPage === page ? "bg-gradient-to-b from-[#FF7DD0] to-[#F7009E] text-white" : "bg-[#312B36] text-[#F9FAFB] border border-[#896E9C] hover:bg-[#423a47]" }`}>{page}</button>
                 ) : ( <span key={`dots-${index}`} className="px-2 sm:px-4 py-2 text-[#F9FAFB]">{page}</span> )
             )}
             <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} className="px-2 py-2 rounded-md bg-[#312B36] text-white disabled:opacity-50 hover:bg-[#423a47] transition-colors border border-[#896E9C]">
