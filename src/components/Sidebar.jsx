@@ -10,13 +10,14 @@ import {
   Settings,
   ChevronDown,
   ChevronRight,
-  ReceiptText, // Icon for Subscriptions
+  ReceiptText,
+  Users2, // Icon for Subscriptions
 } from "lucide-react";
 import Image from "next/image";
 
 const navItems = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard }, 
-  { name: "User Management", href: "/user-management", icon: FileText },
+  { name: "User Management", href: "/user-management", icon: Users2 },
   { name: "Artist Management", href: "/artist-management", icon: Users },
   { name: "Song Management", href: "/song-management", icon: FileText },
   { name: "Playlist Management", href: "/playlist-management", icon: Users },
