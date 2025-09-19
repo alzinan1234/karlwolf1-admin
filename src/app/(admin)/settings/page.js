@@ -7,7 +7,7 @@ const page = () => {
   return (
     <div>
 
-      <SettingsPage/>
+      {/* <SettingsPage/> */}
     </div>
   )
 }

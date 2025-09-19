@@ -11,16 +11,19 @@ import {
   ChevronDown,
   ChevronRight,
   ReceiptText,
-  Users2, // Icon for Subscriptions
+  Users2,
+  UserCog,
+  Music,
+  ListMusic, // Icon for Subscriptions
 } from "lucide-react";
 import Image from "next/image";
 
 const navItems = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard }, 
   { name: "User Management", href: "/user-management", icon: Users2 },
-  { name: "Artist Management", href: "/artist-management", icon: Users },
-  { name: "Song Management", href: "/song-management", icon: FileText },
-  { name: "Playlist Management", href: "/playlist-management", icon: Users },
+  { name: "Artist Management", href: "/artist-management", icon: UserCog },
+  { name: "Song Management", href: "/song-management", icon: Music },
+  { name: "Playlist Management", href: "/playlist-management", icon: ListMusic },
   { name: "Follower Management", href: "/follower-management", icon: Wallet },
 ];
 
@@ -57,7 +60,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   // Check if we're on any subscriptions page
   const isSubscriptionsActive = pathname.includes('/subscriptions');
   // Check if we're on any settings page
-  const isSettingsActive = pathname.includes('/settings');
+  const isSettingsActive = pathname.includes('/');
+  
 
   return (
     <>
