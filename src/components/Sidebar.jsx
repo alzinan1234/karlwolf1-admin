@@ -24,7 +24,7 @@ const navItems = [
   { name: "Artist Management", href: "/artist-management", icon: UserCog },
   { name: "Song Management", href: "/song-management", icon: Music },
   { name: "Playlist Management", href: "/playlist-management", icon: ListMusic },
-  { name: "Follower Management", href: "/follower-management", icon: Wallet },
+  // { name: "Follower Management", href: "/follower-management", icon: Wallet },
 ];
 
 // **NEW**: Data for the Subscriptions dropdown
