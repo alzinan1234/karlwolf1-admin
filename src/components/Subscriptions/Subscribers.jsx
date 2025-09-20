@@ -23,6 +23,12 @@ const SubscribersManagement = () => {
   const [subscribers, setSubscribers] = useState(initialSubscribers);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [messageModal, setMessageModal] = useState(false);
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [message, setMessage] = useState("");
+  const [sendToAll, setSendToAll] = useState(false);
+  const [targetUserName, setTargetUserName] = useState("");
 
   const itemsPerPage = 11;
 
@@ -44,6 +50,81 @@ const SubscribersManagement = () => {
   const handlePageChange = (page) => {
     const newPage = Math.max(1, Math.min(page, totalPages));
     setCurrentPage(newPage);
+  };
+
+  // Individual user selection handler
+  const handleSelectUser = (userId) => {
+    setSelectedUsers((prev) =>
+      prev.includes(userId)
+        ? prev.filter((id) => id !== userId)
+        : [...prev, userId]
+    );
+  };
+
+  // Select/deselect all users on current page
+  const handleSelectAll = () => {
+    const currentPageIds = paginatedSubscribers.map((u) => u.id);
+    const allOnPageSelected = currentPageIds.every((id) =>
+      selectedUsers.includes(id)
+    );
+
+    if (allOnPageSelected) {
+      // Deselect all on current page
+      setSelectedUsers((prev) =>
+        prev.filter((id) => !currentPageIds.includes(id))
+      );
+    } else {
+      // Select all on current page
+      setSelectedUsers((prev) => [...new Set([...prev, ...currentPageIds])]);
+    }
+  };
+
+  // Send message handler for individual users or all users
+  const handleSendMessage = (individual = false, userId = null) => {
+    if (individual && userId) {
+      const user = subscribers.find((u) => u.id === userId);
+      setTargetUserName(user ? user.name : "");
+      setSelectedUsers([userId]);
+      setSendToAll(false);
+    } else {
+      setTargetUserName("");
+      setSendToAll(true);
+      setSelectedUsers([]);
+    }
+    setMessageModal(true);
+  };
+
+  // Send message to selected users handler
+  const handleMessageSelected = () => {
+    if (selectedUsers.length === 0) return;
+    setSendToAll(false);
+    setTargetUserName("");
+    setMessageModal(true);
+  };
+
+  // Confirm message send
+  const handleConfirmSend = () => {
+    if (!message.trim()) {
+      alert("Message cannot be empty.");
+      return;
+    }
+    setMessageModal(false);
+    setConfirmModal(true);
+  };
+
+  // Final message send
+  const handleFinalSend = () => {
+    console.log("Sending message:", message);
+    console.log("To users:", sendToAll ? "All filtered subscribers" : selectedUsers);
+
+    // Reset states
+    setConfirmModal(false);
+    setMessage("");
+    setSelectedUsers([]);
+    setSendToAll(false);
+    setTargetUserName("");
+
+    alert("Message sent successfully!");
   };
 
   const getStatusColor = (status) => {
@@ -77,6 +158,119 @@ const SubscribersManagement = () => {
     return pages;
   };
 
+  // Message Modal Component
+  const MessageModal = () => {
+    if (!messageModal) return null;
+
+    const getRecipientText = () => {
+      if (sendToAll) return "all subscribers";
+      if (targetUserName) return targetUserName;
+      if (selectedUsers.length > 1)
+        return `${selectedUsers.length} selected subscribers`;
+      if (selectedUsers.length === 1) {
+        const user = subscribers.find((u) => u.id === selectedUsers[0]);
+        return user ? user.name : "1 subscriber";
+      }
+      return "subscribers";
+    };
+
+    return (
+      <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+        <div className="bg-[#29232A] rounded-lg w-full max-w-3xl py-10 md:py-20 p-6">
+          <h3 className="text-xl font-semibold text-[#F9FAFB] mb-4">
+            Send Message
+          </h3>
+          <p className="text-[#c1bec4] mb-4">
+            Sending message to:{" "}
+            <span className="text-[#F7009E] font-medium">
+              {getRecipientText()}
+            </span>
+          </p>
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Type your message here..."
+            className="w-full h-32 p-3 bg-[#000000] text-white rounded-md border border-[#896E9C] focus:outline-none focus:border-[#A38BB4] resize-none"
+          />
+          <div className="flex justify-end space-x-3 mt-4">
+            <button
+              onClick={() => {
+                setMessageModal(false);
+                setMessage("");
+                if (!sendToAll && !targetUserName) {
+                  setSelectedUsers([]);
+                }
+              }}
+              className="px-4 py-2 bg-[#423a47] text-[#c1bec4] rounded-md hover:bg-[#4a414e] transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleConfirmSend}
+              className="px-4 py-2 bg-[#F7009E] text-white rounded-md hover:bg-[#d6008a] transition-colors"
+            >
+              Send
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Confirmation Modal Component
+  const ConfirmModal = () => {
+    if (!confirmModal) return null;
+
+    const getRecipientText = () => {
+      if (sendToAll) return "all subscribers";
+      if (targetUserName) return targetUserName;
+      if (selectedUsers.length > 1)
+        return `${selectedUsers.length} selected subscribers`;
+      if (selectedUsers.length === 1) {
+        const user = subscribers.find((u) => u.id === selectedUsers[0]);
+        return user ? user.name : "1 subscriber";
+      }
+      return "subscribers";
+    };
+
+    return (
+      <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+        <div className="bg-[#312B36] rounded-lg w-full max-w-lg py-10 p-6 mx-4">
+          <h3 className="text-xl font-semibold text-[#F9FAFB] mb-4">
+            Confirm Message
+          </h3>
+          <p className="text-[#c1bec4] mb-2">
+            Are you sure you want to send this message to{" "}
+            <span className="text-[#F7009E] font-medium">
+              {getRecipientText()}
+            </span>
+            ?
+          </p>
+          <div className="bg-[#423a47] p-3 rounded-md mt-4 mb-4">
+            <p className="text-[#F9FAFB] text-sm">{message}</p>
+          </div>
+     <div className="flex justify-start space-x-3">
+              <button
+                onClick={() => {
+                  setConfirmModal(false);
+                  setMessageModal(true);
+                }}
+                className="px-6 py-2 bg-[#F7009E33] text-[#F9FAFB] rounded-md border border-[#896E9C] hover:bg-[#2A374B] transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleFinalSend}
+                className="px-6 py-2 bg-gradient-to-b from-[#FF7DD0] to-[#F7009E] text-white rounded-md hover:from-[#FF6BC9] hover:to-[#E6008F] transition-all"
+              >
+                Send
+              </button>
+            </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className=" min-h-screen p-4 sm:p-6">
       <div className=" mx-auto">
@@ -84,15 +278,38 @@ const SubscribersManagement = () => {
           <h1 className="text-2xl font-semibold text-[#F9FAFB]">
             Subscribers Management
           </h1>
-          <div className="relative">
+          <div className="flex items-center space-x-4">
+            <div className="relative">
               <input
                 type="text"
                 placeholder="Search"
                 value={searchTerm}
-                onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}   
+                onChange={(e) => { 
+                  setSearchTerm(e.target.value); 
+                  setCurrentPage(1); 
+                  setSelectedUsers([]); // Clear selections on search
+                }}   
                 className="pl-10 pr-4 py-2 w-56 bg-[#312B36] text-white rounded-md border border-[#896E9C] focus:outline-none focus:border-[#A38BB4]"
               />
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" /></svg>
+            </div>
+
+            {/* Dynamic Message Button */}
+            {selectedUsers.length > 0 ? (
+              <button
+                onClick={handleMessageSelected}
+                className="px-4 py-2 bg-[#F7009E4D] text-[#F7009E] cursor-pointer rounded-md hover:bg-[#f7009e66] transition-colors text-sm font-medium whitespace-nowrap"
+              >
+                Message Selected ({selectedUsers.length})
+              </button>
+            ) : (
+              <button
+                onClick={() => handleSendMessage()}
+                className="px-4 py-2 bg-[#F7009E4D] text-[#F7009E] cursor-pointer rounded-md hover:bg-[#f7009e66] transition-colors text-sm font-medium whitespace-nowrap"
+              >
+                Push Message to All
+              </button>
+            )}
           </div>
         </div>
 
@@ -100,24 +317,66 @@ const SubscribersManagement = () => {
           <table className="min-w-full">
             <thead className="border-b border-[#896E9C]">
               <tr>
+                {/* Select All Checkbox */}
+                <th className="px-6 py-4">
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      onChange={handleSelectAll}
+                      checked={
+                        paginatedSubscribers.length > 0 &&
+                        paginatedSubscribers.every((subscriber) =>
+                          selectedUsers.includes(subscriber.id)
+                        )
+                      }
+                      className="form-checkbox h-5 w-5 bg-transparent border-[#896E9C] rounded text-[#F7009E] focus:ring-0 focus:ring-offset-0"
+                    />
+                    <span
+                      onClick={handleSelectAll}
+                      className="text-xs font-medium text-[#F9FAFB] uppercase tracking-wider cursor-pointer select-none"
+                    >
+                      Select All
+                    </span>
+                  </div>
+                </th>
                 <th className="px-6 py-4 text-left text-xs font-medium text-[#F9FAFB] uppercase tracking-wider">NO</th>
                 <th className="px-6 py-4 text-left text-xs font-medium text-[#F9FAFB] uppercase tracking-wider">Name</th>
                 <th className="px-6 py-4 text-left text-xs font-medium text-[#F9FAFB] uppercase tracking-wider">Plan Name</th>
                 <th className="px-6 py-4 text-left text-xs font-medium text-[#F9FAFB] uppercase tracking-wider">Start Date</th>
                 <th className="px-6 py-4 text-left text-xs font-medium text-[#F9FAFB] uppercase tracking-wider">Status</th>
                 <th className="px-6 py-4 text-left text-xs font-medium text-[#F9FAFB] uppercase tracking-wider">Action</th>
+                <th className="px-6 py-4 text-left text-xs font-medium text-[#F9FAFB] uppercase tracking-wider">Push Message</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#423a47]">
               {paginatedSubscribers.map((subscriber, index) => (
                 <tr key={subscriber.id} className="hover:bg-[#3a333f] transition-colors">
+                  {/* Individual User Checkbox */}
+                  <td className="px-6 py-4">
+                    <input
+                      type="checkbox"
+                      checked={selectedUsers.includes(subscriber.id)}
+                      onChange={() => handleSelectUser(subscriber.id)}
+                      className="form-checkbox h-5 w-5 bg-transparent border-[#896E9C] rounded text-[#F7009E] focus:ring-0 focus:ring-offset-0"
+                    />
+                  </td>
+                  
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#F9FAFB]">
                     {(currentPage - 1) * itemsPerPage + index + 1}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-10 w-10">
-                        <img className="h-10 w-10 rounded-full object-cover" src={subscriber.avatar} alt={subscriber.name} />
+                        <img 
+                          className="h-10 w-10 rounded-full object-cover" 
+                          src={subscriber.avatar} 
+                          alt={subscriber.name}
+                          onError={(e) => {
+                            e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                              subscriber.name
+                            )}&background=F7009E&color=fff`;
+                          }}
+                        />
                       </div>
                       <div className="ml-4">
                         <div className="text-sm font-medium text-[#F9FAFB]">{subscriber.name}</div>
@@ -131,6 +390,16 @@ const SubscribersManagement = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <button className="bg-[#33314B] text-[#818CF8] px-4 py-1.5 rounded-md hover:bg-[#413F5F] transition-colors text-xs font-medium">View</button>
+                  </td>
+                  
+                  {/* Individual Message Button */}
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <button
+                      onClick={() => handleSendMessage(true, subscriber.id)}
+                      className="bg-[#F7009E4D] text-[#F7009E] px-4 py-1.5 cursor-pointer rounded-md hover:bg-[#f7009e66] transition-colors text-xs font-medium"
+                    >
+                      Send Message
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -154,6 +423,10 @@ const SubscribersManagement = () => {
           </div>
         )}
       </div>
+
+      {/* Modals */}
+      <MessageModal />
+      <ConfirmModal />
     </div>
   );
 };
