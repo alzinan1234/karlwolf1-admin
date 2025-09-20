@@ -166,7 +166,7 @@ export default function Topbar({  }) {
       <header className="bg-[linear-gradient(99deg,#6B316C_0%,#312B36_30.19%)] p-5 border-[#D6D6D6] relative">
         <div className='flex justify-between items-center'>
           <div>
-            <h1 className='text-[22px] ml-10'>Overview</h1>
+            {/* <h1 className='text-[22px] ml-10'>Overview</h1> */}
           </div>
               
           <div className="flex items-center justify-end gap-6">

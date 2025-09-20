@@ -59,8 +59,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
   // Check if we're on any subscriptions page
   const isSubscriptionsActive = pathname.includes('/subscriptions');
-  // Check if we're on any settings page
-  const isSettingsActive = pathname.includes('/');
+  // FIXED: Check if we're on any settings page
+  const isSettingsActive = pathname.includes('/settings');
   
 
   return (
