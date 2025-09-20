@@ -15,7 +15,7 @@ export default function NotificationSettings() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4 font-sans">
+    <div className=" mx-auto p-4 font-sans">
       <div className="bg-[#29232A] p-8 rounded-2xl shadow-lg flex flex-col gap-8">
         
         {/* Header Section */}
