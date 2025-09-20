@@ -18,36 +18,36 @@ const EarningSummaryChart = () => {
 
   // Generate fake data for the chart
   const monthlyData = [
-    { month: "Jan", new: 320, old: 280 },
-    { month: "Feb", new: 350, old: 320 },
-    { month: "Mar", new: 380, old: 340 },
-    { month: "Apr", new: 420, old: 380 },
-    { month: "May", new: 450, old: 400 },
-    { month: "Jun", new: 480, old: 420 },
-    { month: "Jul", new: 460, old: 430 },
-    { month: "Aug", new: 490, old: 450 },
-    { month: "Sep", new: 480, old: 440 },
-    { month: "Oct", new: 510, old: 460 },
-    { month: "Nov", new: 495, old: 470 },
-    { month: "Dec", new: 520, old: 480 },
+    { month: "Jan", plays: 320, money: 280 },
+    { month: "Feb", plays: 350, money: 320 },
+    { month: "Mar", plays: 380, money: 340 },
+    { month: "Apr", plays: 420, money: 380 },
+    { month: "May", plays: 450, money: 400 },
+    { month: "Jun", plays: 480, money: 420 },
+    { month: "Jul", plays: 460, money: 430 },
+    { month: "Aug", plays: 490, money: 450 },
+    { month: "Sep", plays: 480, money: 440 },
+    { month: "Oct", plays: 510, money: 460 },
+    { month: "Nov", plays: 495, money: 470 },
+    { month: "Dec", plays: 520, money: 480 },
   ];
 
   const dailyData = Array.from({ length: 30 }, (_, i) => ({
     month: `D${i + 1}`,
-    new: Math.floor(Math.random() * 100) + 400,
-    old: Math.floor(Math.random() * 100) + 350,
+    plays: Math.floor(Math.random() * 100) + 400,
+    money: Math.floor(Math.random() * 100) + 350,
   }));
 
   const weeklyData = Array.from({ length: 12 }, (_, i) => ({
     month: `W${i + 1}`,
-    new: Math.floor(Math.random() * 100) + 400,
-    old: Math.floor(Math.random() * 100) + 350,
+    plays: Math.floor(Math.random() * 100) + 400,
+    money: Math.floor(Math.random() * 100) + 350,
   }));
 
   const yearlyData = Array.from({ length: 12 }, (_, i) => ({
     month: 2013 + i,
-    new: Math.floor(Math.random() * 2000) + 3000,
-    old: Math.floor(Math.random() * 2000) + 2500,
+    plays: Math.floor(Math.random() * 2000) + 3000,
+    money: Math.floor(Math.random() * 2000) + 2500,
   }));
 
   const getChartData = () => {
@@ -140,11 +140,11 @@ const EarningSummaryChart = () => {
                   <div className="flex gap-4">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#A141FE] rounded-full"></div>
-                      <span className="text-gray-300 text-xs">New</span>
+                      <span className="text-gray-300 text-xs">Plays</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#245FE7] rounded-full"></div>
-                      <span className="text-gray-300 text-xs">Old</span>
+                      <span className="text-gray-300 text-xs">Money</span>
                     </div>
                   </div>
                 </div>
@@ -158,7 +158,7 @@ const EarningSummaryChart = () => {
                     >
                       <defs>
                         <linearGradient
-                          id="colorNew"
+                          id="colorPlays"
                           x1="0"
                           y1="0"
                           x2="0"
@@ -176,7 +176,7 @@ const EarningSummaryChart = () => {
                           />
                         </linearGradient>
                         <linearGradient
-                          id="colorOld"
+                          id="colorMoney"
                           x1="0"
                           y1="0"
                           x2="0"
@@ -223,19 +223,19 @@ const EarningSummaryChart = () => {
                       <Tooltip content={<CustomTooltip />} />
                       <Area
                         type="monotone"
-                        dataKey="new"
+                        dataKey="plays"
                         stroke="#A141FE"
                         strokeWidth={3}
                         fillOpacity={1}
-                        fill="url(#colorNew)"
+                        fill="url(#colorPlays)"
                       />
                       <Area
                         type="monotone"
-                        dataKey="old"
+                        dataKey="money"
                         stroke="#245FE7"
                         strokeWidth={3}
                         fillOpacity={1}
-                        fill="url(#colorOld)"
+                        fill="url(#colorMoney)"
                       />
                     </AreaChart>
                   </ResponsiveContainer>
@@ -277,10 +277,10 @@ const EarningSummaryChart = () => {
             <div className="bg-[#312B36] rounded-xl p-[20px] w-full py-18 px-10 ">
               <div className="flex items-center justify-between mb-2 ">
                 <div>
-                  <p className="text-white text-xs">Total Playlist</p>
-                  <p className="text-white text-4xl font-bold">12</p>
-                </div>
-
+               <p className="text-gray-400 text-xs">Total Playlist</p>
+              <p className="text-white text-4xl font-bold">12</p>
+             </div>
+                
                 <div className=" bg-[#29232A] rounded-lg flex items-center justify-center p-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -343,28 +343,129 @@ const EarningSummaryChart = () => {
                   </svg>
                 </div>
               </div>
+             
             </div>
 
             {/* Total Followers Card */}
             <div className="bg-[#312B36] rounded-xl p-[20px] w-full py-18 px-10">
               <div className="flex items-center justify-between mb-2">
-                <div>
-                  <p className="text-white text-xs">Active Subscribers</p>
-                  <p className="text-white text-4xl font-bold">58,320</p>
-                </div>
-
+                  <div>
+                <p className="text-gray-400 text-xs">Total Followers</p>
+              <p className="text-white text-4xl font-bold">58,320</p>
+             </div>
+               
                 <div className=" bg-[#29232A] rounded-lg flex items-center justify-center p-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path d="M20 8H4V6H20V8ZM18 2H6V4H18V2ZM22 12V20C22 20.5304 21.7893 21.0391 21.4142 21.4142C21.0391 21.7893 20.5304 22 20 22H4C3.47005 21.9984 2.96227 21.7872 2.58753 21.4125C2.2128 21.0377 2.00158 20.5299 2 20V12C2.00158 11.4701 2.2128 10.9623 2.58753 10.5875C2.96227 10.2128 3.47005 10.0016 4 10H20C20.5299 10.0016 21.0377 10.2128 21.4125 10.5875C21.7872 10.9623 21.9984 11.4701 22 12ZM13.927 17.042L16.25 15.056L13.191 14.8L12 12L10.809 14.8L7.75 15.056L10.073 17.042L9.373 20L12 18.428L14.627 20L13.927 17.042Z" fill="url(#paint0_linear_25596_8966)"/>
-  <defs>
-    <linearGradient id="paint0_linear_25596_8966" x1="12" y1="2" x2="12" y2="22" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FF7DD0"/>
-      <stop offset="1" stop-color="#F7009E"/>
-    </linearGradient>
-  </defs>
-</svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="33"
+                    viewBox="0 0 32 33"
+                    fill="none"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M11 9.9563C11 7.19488 13.2386 4.9563 16 4.9563C18.7614 4.9563 21 7.19488 21 9.9563C21 12.7177 18.7614 14.9563 16 14.9563C13.2386 14.9563 11 12.7177 11 9.9563Z"
+                      fill="url(#paint0_linear_0_2785)"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M21 13.9563C21 11.7472 22.7909 9.9563 25 9.9563C27.2091 9.9563 29 11.7472 29 13.9563C29 16.1654 27.2091 17.9563 25 17.9563C22.7909 17.9563 21 16.1654 21 13.9563Z"
+                      fill="url(#paint1_linear_0_2785)"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M3 13.9563C3 11.7472 4.79086 9.9563 7 9.9563C9.20914 9.9563 11 11.7472 11 13.9563C11 16.1654 9.20914 17.9563 7 17.9563C4.79086 17.9563 3 16.1654 3 13.9563Z"
+                      fill="url(#paint2_linear_0_2785)"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8.41315 21.113C10.0104 18.6155 12.8111 16.9563 16 16.9563C19.1893 16.9563 21.9903 18.6159 23.5875 21.1139C24.6917 22.8409 25.1694 24.9232 24.9453 26.9535C24.9103 27.2708 24.7259 27.5523 24.449 27.7112C21.9592 29.1398 19.0734 29.9563 16 29.9563C12.9266 29.9563 10.0408 29.1398 7.55099 27.7112C7.27412 27.5523 7.08973 27.2708 7.05471 26.9535C6.83058 24.9228 7.30855 22.8401 8.41315 21.113Z"
+                      fill="url(#paint3_linear_0_2785)"
+                    />
+                    <path
+                      d="M6.77638 19.9612C6.76032 19.9859 6.74436 20.0106 6.7285 20.0354C5.44122 22.0482 4.85211 24.4452 5.03295 26.8083C4.22222 26.6852 3.4356 26.4871 2.68057 26.2212L2.52729 26.1672C2.24768 26.0687 2.0523 25.8148 2.02879 25.5193L2.0159 25.3573C2.00536 25.2248 2 25.0911 2 24.9563C2 22.2698 4.11873 20.0782 6.77638 19.9612Z"
+                      fill="url(#paint4_linear_0_2785)"
+                    />
+                    <path
+                      d="M26.9675 26.8082C27.1483 24.4456 26.5595 22.0491 25.2727 20.0365C25.2566 20.0114 25.2404 19.9863 25.2241 19.9612C27.8815 20.0785 30 22.27 30 24.9563C30 25.0911 29.9946 25.2248 29.9841 25.3573L29.9712 25.5193C29.9477 25.8148 29.7523 26.0687 29.4727 26.1672L29.3194 26.2212C28.5645 26.487 27.7781 26.6851 26.9675 26.8082Z"
+                      fill="url(#paint5_linear_0_2785)"
+                    />
+                    <defs>
+                      <linearGradient
+                        id="paint0_linear_0_2785"
+                        x1="16"
+                        y1="4.9563"
+                        x2="16"
+                        y2="29.9563"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#FF7DD0" />
+                        <stop offset="1" stop-color="#F7009E" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint1_linear_0_2785"
+                        x1="16"
+                        y1="4.9563"
+                        x2="16"
+                        y2="29.9563"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#FF7DD0" />
+                        <stop offset="1" stop-color="#F7009E" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint2_linear_0_2785"
+                        x1="16"
+                        y1="4.9563"
+                        x2="16"
+                        y2="29.9563"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#FF7DD0" />
+                        <stop offset="1" stop-color="#F7009E" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint3_linear_0_2785"
+                        x1="16"
+                        y1="4.9563"
+                        x2="16"
+                        y2="29.9563"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#FF7DD0" />
+                        <stop offset="1" stop-color="#F7009E" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint4_linear_0_2785"
+                        x1="16"
+                        y1="4.9563"
+                        x2="16"
+                        y2="29.9563"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#FF7DD0" />
+                        <stop offset="1" stop-color="#F7009E" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint5_linear_0_2785"
+                        x1="16"
+                        y1="4.9563"
+                        x2="16"
+                        y2="29.9563"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#FF7DD0" />
+                        <stop offset="1" stop-color="#F7009E" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
                 </div>
               </div>
+           
             </div>
           </div>
         </div>

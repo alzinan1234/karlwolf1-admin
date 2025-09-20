@@ -40,6 +40,7 @@ const UserManagement = () => {
   const [confirmModal, setConfirmModal] = useState(false);
   const [message, setMessage] = useState("");
   const [sendToAll, setSendToAll] = useState(false);
+  const [targetUserName, setTargetUserName] = useState("");
 
   const itemsPerPage = 11;
 
@@ -106,10 +107,13 @@ const UserManagement = () => {
   // Handles opening the message modal for individual, selected, or all users
   const handleSendMessage = (individual = false, userId = null) => {
     if (individual && userId) {
+      const user = users.find(u => u.id === userId);
+      setTargetUserName(user ? user.name : "");
       setSelectedUsers([userId]);
       setSendToAll(false);
     } else {
       // This sets up the modal for sending a message to all filtered users
+      setTargetUserName("");
       setSendToAll(true);
     }
     setMessageModal(true);
@@ -132,6 +136,7 @@ const UserManagement = () => {
     setMessage("");
     setSelectedUsers([]);
     setSendToAll(false);
+    setTargetUserName("");
     
     alert("Message sent successfully!");
   };
@@ -219,8 +224,10 @@ const UserManagement = () => {
             <div className="flex items-center mb-6">
               <label htmlFor="sendToAll" className="text-sm text-[#F9FAFB]">
                 {sendToAll 
-                  ? "This message will be sent to all users matching the current search/filter."
-                  : `This message will be sent to ${selectedUsers.length} selected user(s).`}
+                  ? `This message will be sent to all users (${filteredUsers.length} users) matching the current search/filter.`
+                  : targetUserName 
+                    ? `This message will be sent to ${targetUserName}.`
+                    : `This message will be sent to ${selectedUsers.length} selected user(s).`}
               </label>
             </div>
             <div className="flex space-x-3">
@@ -229,6 +236,7 @@ const UserManagement = () => {
                   setMessageModal(false);
                   setMessage("");
                   setSendToAll(false);
+                  setTargetUserName("");
                 }}
                 className="px-4 py-2 bg-[#F7009E33] text-[#F9FAFB] rounded-md border border-[#896E9C] hover:bg-[#2A374B] transition-colors"
               >
@@ -264,7 +272,11 @@ const UserManagement = () => {
             </h3>
             <p className="text-white mb-6">
               You are about to send this message to{" "}
-              {sendToAll ? "all displayed users" : `${selectedUsers.length} user(s)`}.
+              {sendToAll 
+                ? `all ${filteredUsers.length} displayed users` 
+                : targetUserName 
+                  ? targetUserName
+                  : `${selectedUsers.length} user(s)`}.
             </p>
             <div className="flex justify-center space-x-3">
               <button
@@ -314,12 +326,12 @@ const UserManagement = () => {
                 <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
               </svg>
             </div>
-            {/* <button 
+            <button 
               onClick={() => handleSendMessage()}
               className="px-4 py-2 bg-[#F7009E4D] text-[#F7009E] cursor-pointer rounded-md hover:bg-[#f7009e66] transition-colors text-sm font-medium whitespace-nowrap"
             >
-              Push Message
-            </button> */}
+              Push Message to All
+            </button>
           </div>
         </div>
 
