@@ -403,8 +403,8 @@ const UserManagement = () => {
     };
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-[#312B36] rounded-lg p-6 w-96 max-w-sm mx-4">
+      <div className="fixed inset-0 bg-black/80 bg-opacity-50 flex items-center justify-center z-50">
+        <div className="bg-[#29232A] rounded-lg w-full max-w-3xl py-10 md:py-20 p-6">
           <h3 className="text-xl font-semibold text-[#F9FAFB] mb-4">
             Send Message
           </h3>
@@ -414,32 +414,40 @@ const UserManagement = () => {
               {getRecipientText()}
             </span>
           </p>
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Type your message here..."
-            className="w-full h-32 p-3 bg-[#423a47] text-white rounded-md border border-[#896E9C] focus:outline-none focus:border-[#A38BB4] resize-none"
-          />
-          <div className="flex justify-end space-x-3 mt-4">
-            <button
-              onClick={() => {
-                setMessageModal(false);
-                setMessage("");
-                if (!sendToAll && !targetUserName) {
-                  setSelectedUsers([]);
+           <textarea
+              ref={(input) => {
+                if (input) {
+                  input.focus();
+                  input.selectionStart = input.selectionEnd = input.value.length;
                 }
               }}
-              className="px-4 py-2 bg-[#423a47] text-[#c1bec4] rounded-md hover:bg-[#4a414e] transition-colors"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={handleConfirmSend}
-              className="px-4 py-2 bg-[#F7009E] text-white rounded-md hover:bg-[#d6008a] transition-colors"
-            >
-              Send
-            </button>
-          </div>
+              value={message}
+              onChange={(e) => {
+                const value = e.target.value;
+                setMessage(value);
+              }}
+              className="w-full h-32 px-4 py-3 bg-black text-white rounded-md border border-[#896E9C] focus:outline-none focus:border-[#A38BB4]"
+              placeholder="Enter your message..."
+              rows={4}
+            />
+         <div className="flex space-x-3">
+              <button
+                onClick={() => {
+                  setMessageModal(false);
+                  setMessage("");
+                  setSendToAll(false);
+                }}
+                className="px-4 py-2 bg-[#F7009E33] text-[#F9FAFB] rounded-md border border-[#896E9C] hover:bg-[#2A374B] transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmSend}
+                className="px-4 py-2 bg-gradient-to-b from-[#FF7DD0] to-[#F7009E] text-white rounded-md hover:from-[#FF6BC9] hover:to-[#E6008F] transition-all"
+              >
+                Confirm Send
+              </button>
+            </div>
         </div>
       </div>
     );
@@ -462,8 +470,8 @@ const UserManagement = () => {
     };
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-[#312B36] rounded-lg p-6 w-96 max-w-sm mx-4">
+      <div className="fixed inset-0 bg-black/80 bg-opacity-50 flex items-center justify-center z-50">
+        <div className="bg-[#29232A] rounded-lg w-full max-w-lg py-10 md:py-20 p-6">
           <h3 className="text-xl font-semibold text-[#F9FAFB] mb-4">
             Confirm Message
           </h3>
@@ -477,23 +485,23 @@ const UserManagement = () => {
           <div className="bg-[#423a47] p-3 rounded-md mt-4 mb-4">
             <p className="text-[#F9FAFB] text-sm">{message}</p>
           </div>
-          <div className="flex justify-end space-x-3">
-            <button
-              onClick={() => {
-                setConfirmModal(false);
-                setMessageModal(true);
-              }}
-              className="px-4 py-2 bg-[#423a47] text-[#c1bec4] rounded-md hover:bg-[#4a414e] transition-colors"
-            >
-              Back
-            </button>
-            <button
-              onClick={handleFinalSend}
-              className="px-4 py-2 bg-[#F7009E] text-white rounded-md hover:bg-[#d6008a] transition-colors"
-            >
-              Confirm Send
-            </button>
-          </div>
+            <div className="flex justify-start space-x-3">
+              <button
+                onClick={() => {
+                  setConfirmModal(false);
+                  setMessageModal(true);
+                }}
+                className="px-6 py-2 bg-[#F7009E33] text-[#F9FAFB] rounded-md border border-[#896E9C] hover:bg-[#2A374B] transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleFinalSend}
+                className="px-6 py-2 bg-gradient-to-b from-[#FF7DD0] to-[#F7009E] text-white rounded-md hover:from-[#FF6BC9] hover:to-[#E6008F] transition-all"
+              >
+                Send
+              </button>
+            </div>
         </div>
       </div>
     );

@@ -186,12 +186,22 @@ const SubscribersManagement = () => {
               {getRecipientText()}
             </span>
           </p>
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Type your message here..."
-            className="w-full h-32 p-3 bg-[#000000] text-white rounded-md border border-[#896E9C] focus:outline-none focus:border-[#A38BB4] resize-none"
-          />
+           <textarea
+              ref={(input) => {
+                if (input) {
+                  input.focus();
+                  input.selectionStart = input.selectionEnd = input.value.length;
+                }
+              }}
+              value={message}
+              onChange={(e) => {
+                const value = e.target.value;
+                setMessage(value);
+              }}
+              className="w-full h-32 px-4 py-3 bg-black text-white rounded-md border border-[#896E9C] focus:outline-none focus:border-[#A38BB4]"
+              placeholder="Enter your message..."
+              rows={4}
+            />
           <div className="flex justify-end space-x-3 mt-4">
             <button
               onClick={() => {
