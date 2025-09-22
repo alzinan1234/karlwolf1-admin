@@ -18,36 +18,36 @@ const EarningSummaryChart = () => {
 
   // Generate fake data for the chart
   const monthlyData = [
-    { month: "Jan", plays: 320, money: 280 },
-    { month: "Feb", plays: 350, money: 320 },
-    { month: "Mar", plays: 380, money: 340 },
-    { month: "Apr", plays: 420, money: 380 },
-    { month: "May", plays: 450, money: 400 },
-    { month: "Jun", plays: 480, money: 420 },
-    { month: "Jul", plays: 460, money: 430 },
-    { month: "Aug", plays: 490, money: 450 },
-    { month: "Sep", plays: 480, money: 440 },
-    { month: "Oct", plays: 510, money: 460 },
-    { month: "Nov", plays: 495, money: 470 },
-    { month: "Dec", plays: 520, money: 480 },
+    { month: "Jan", plays: 320, earning: 280 },
+    { month: "Feb", plays: 350, earning: 320 },
+    { month: "Mar", plays: 380, earning: 340 },
+    { month: "Apr", plays: 420, earning: 380 },
+    { month: "May", plays: 450, earning: 400 },
+    { month: "Jun", plays: 480, earning: 420 },
+    { month: "Jul", plays: 460, earning: 430 },
+    { month: "Aug", plays: 490, earning: 450 },
+    { month: "Sep", plays: 480, earning: 440 },
+    { month: "Oct", plays: 510, earning: 460 },
+    { month: "Nov", plays: 495, earning: 470 },
+    { month: "Dec", plays: 520, earning: 480 },
   ];
 
   const dailyData = Array.from({ length: 30 }, (_, i) => ({
     month: `D${i + 1}`,
     plays: Math.floor(Math.random() * 100) + 400,
-    money: Math.floor(Math.random() * 100) + 350,
+    earning: Math.floor(Math.random() * 100) + 350,
   }));
 
   const weeklyData = Array.from({ length: 12 }, (_, i) => ({
     month: `W${i + 1}`,
     plays: Math.floor(Math.random() * 100) + 400,
-    money: Math.floor(Math.random() * 100) + 350,
+    earning: Math.floor(Math.random() * 100) + 350,
   }));
 
   const yearlyData = Array.from({ length: 12 }, (_, i) => ({
     month: 2013 + i,
     plays: Math.floor(Math.random() * 2000) + 3000,
-    money: Math.floor(Math.random() * 2000) + 2500,
+    earning: Math.floor(Math.random() * 2000) + 2500,
   }));
 
   const getChartData = () => {
@@ -144,7 +144,7 @@ const EarningSummaryChart = () => {
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#245FE7] rounded-full"></div>
-                      <span className="text-gray-300 text-xs">Money</span>
+                      <span className="text-gray-300 text-xs">Earning</span>
                     </div>
                   </div>
                 </div>
@@ -176,7 +176,7 @@ const EarningSummaryChart = () => {
                           />
                         </linearGradient>
                         <linearGradient
-                          id="colorMoney"
+                          id="colorEarning"
                           x1="0"
                           y1="0"
                           x2="0"
@@ -224,6 +224,7 @@ const EarningSummaryChart = () => {
                       <Area
                         type="monotone"
                         dataKey="plays"
+                        name="Plays"
                         stroke="#A141FE"
                         strokeWidth={3}
                         fillOpacity={1}
@@ -231,11 +232,12 @@ const EarningSummaryChart = () => {
                       />
                       <Area
                         type="monotone"
-                        dataKey="money"
+                        dataKey="earning"
+                        name="Earning"
                         stroke="#245FE7"
                         strokeWidth={3}
                         fillOpacity={1}
-                        fill="url(#colorMoney)"
+                        fill="url(#colorEarning)"
                       />
                     </AreaChart>
                   </ResponsiveContainer>
@@ -277,10 +279,10 @@ const EarningSummaryChart = () => {
             <div className="bg-[#312B36] rounded-xl p-[20px] w-full py-18 px-10 ">
               <div className="flex items-center justify-between mb-2 ">
                 <div>
-               <p className="text-gray-400 text-xs">Total Playlist</p>
-              <p className="text-white text-4xl font-bold">12</p>
-             </div>
-                
+                  <p className="text-gray-400 text-xs">Total Playlist</p>
+                  <p className="text-white text-4xl font-bold">12</p>
+                </div>
+
                 <div className=" bg-[#29232A] rounded-lg flex items-center justify-center p-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -343,17 +345,16 @@ const EarningSummaryChart = () => {
                   </svg>
                 </div>
               </div>
-             
             </div>
 
             {/* Total Followers Card */}
             <div className="bg-[#312B36] rounded-xl p-[20px] w-full py-18 px-10">
               <div className="flex items-center justify-between mb-2">
-                  <div>
-                <p className="text-gray-400 text-xs">Total Followers</p>
-              <p className="text-white text-4xl font-bold">58,320</p>
-             </div>
-               
+                <div>
+                  <p className="text-gray-400 text-xs">Total Followers</p>
+                  <p className="text-white text-4xl font-bold">58,320</p>
+                </div>
+
                 <div className=" bg-[#29232A] rounded-lg flex items-center justify-center p-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -465,7 +466,6 @@ const EarningSummaryChart = () => {
                   </svg>
                 </div>
               </div>
-           
             </div>
           </div>
         </div>
