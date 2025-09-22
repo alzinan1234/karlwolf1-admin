@@ -18,36 +18,36 @@ const EarningSummaryChart = () => {
 
   // Generate fake data for the chart
   const monthlyData = [
-    { month: "Jan", plays: 320, earning: 280 },
-    { month: "Feb", plays: 350, earning: 320 },
-    { month: "Mar", plays: 380, earning: 340 },
-    { month: "Apr", plays: 420, earning: 380 },
-    { month: "May", plays: 450, earning: 400 },
-    { month: "Jun", plays: 480, earning: 420 },
-    { month: "Jul", plays: 460, earning: 430 },
-    { month: "Aug", plays: 490, earning: 450 },
-    { month: "Sep", plays: 480, earning: 440 },
-    { month: "Oct", plays: 510, earning: 460 },
-    { month: "Nov", plays: 495, earning: 470 },
-    { month: "Dec", plays: 520, earning: 480 },
+    { month: "Jan", plays: 320, earnings: 280 },
+    { month: "Feb", plays: 350, earnings: 320 },
+    { month: "Mar", plays: 380, earnings: 340 },
+    { month: "Apr", plays: 420, earnings: 380 },
+    { month: "May", plays: 450, earnings: 400 },
+    { month: "Jun", plays: 480, earnings: 420 },
+    { month: "Jul", plays: 460, earnings: 430 },
+    { month: "Aug", plays: 490, earnings: 450 },
+    { month: "Sep", plays: 480, earnings: 440 },
+    { month: "Oct", plays: 510, earnings: 460 },
+    { month: "Nov", plays: 495, earnings: 470 },
+    { month: "Dec", plays: 520, earnings: 480 },
   ];
 
   const dailyData = Array.from({ length: 30 }, (_, i) => ({
     month: `D${i + 1}`,
     plays: Math.floor(Math.random() * 100) + 400,
-    earning: Math.floor(Math.random() * 100) + 350,
+    earnings: Math.floor(Math.random() * 100) + 350,
   }));
 
   const weeklyData = Array.from({ length: 12 }, (_, i) => ({
     month: `W${i + 1}`,
     plays: Math.floor(Math.random() * 100) + 400,
-    earning: Math.floor(Math.random() * 100) + 350,
+    earnings: Math.floor(Math.random() * 100) + 350,
   }));
 
   const yearlyData = Array.from({ length: 12 }, (_, i) => ({
     month: 2013 + i,
     plays: Math.floor(Math.random() * 2000) + 3000,
-    earning: Math.floor(Math.random() * 2000) + 2500,
+    earnings: Math.floor(Math.random() * 2000) + 2500,
   }));
 
   const getChartData = () => {
@@ -144,7 +144,7 @@ const EarningSummaryChart = () => {
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#245FE7] rounded-full"></div>
-                      <span className="text-gray-300 text-xs">Earning</span>
+                      <span className="text-gray-300 text-xs">Earnings</span>
                     </div>
                   </div>
                 </div>
@@ -176,7 +176,7 @@ const EarningSummaryChart = () => {
                           />
                         </linearGradient>
                         <linearGradient
-                          id="colorEarning"
+                          id="colorEarnings"
                           x1="0"
                           y1="0"
                           x2="0"
@@ -232,12 +232,12 @@ const EarningSummaryChart = () => {
                       />
                       <Area
                         type="monotone"
-                        dataKey="earning"
-                        name="Earning"
+                        dataKey="earnings"
+                        name="Earnings"
                         stroke="#245FE7"
                         strokeWidth={3}
                         fillOpacity={1}
-                        fill="url(#colorEarning)"
+                        fill="url(#colorEarnings)"
                       />
                     </AreaChart>
                   </ResponsiveContainer>
@@ -247,24 +247,24 @@ const EarningSummaryChart = () => {
 
             {/* Bottom Stats */}
             <div className="flex mt-6  w-full">
-              {/* This Month Earning */}
+              {/* This Month Earnings */}
               <div className="flex-1 px-16 py-4 w-full border-t border-r border-[#896E9C] flex items-center gap-3">
                 <div className="w-10 h-10 bg-[#29232A] rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-lg">$</span>
                 </div>
                 <div>
-                  <p className="text-gray-400 text-xs">This Month Earning</p>
+                  <p className="text-gray-400 text-xs">This Month Earnings</p>
                   <p className="text-white text-sm font-medium">$1689.53</p>
                 </div>
               </div>
 
-              {/* Total Earning */}
+              {/* Total Earnings */}
               <div className="flex-1 px-16 py-4 w-full border-t border-[#896E9C] flex items-center gap-3">
                 <div className="w-10 h-10 bg-[#29232A] rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-lg">$</span>
                 </div>
                 <div>
-                  <p className="text-gray-400 text-xs">Total Earning</p>
+                  <p className="text-gray-400 text-xs">Total Earnings</p>
                   <p className="text-white text-sm font-medium">$52,567.53</p>
                 </div>
               </div>
@@ -298,14 +298,14 @@ const EarningSummaryChart = () => {
                     <path
                       d="M19 1.6521H1M19 6.31877H1M9 10.9854H1M9 15.6521H1"
                       stroke="url(#paint0_linear_19_496)"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
                     />
                     <path
                       d="M16.875 11.7701C18.529 12.7251 19.355 13.2031 19.477 13.8911C19.5074 14.0634 19.5074 14.2398 19.477 14.4121C19.356 15.1021 18.529 15.5791 16.875 16.5331C15.221 17.4881 14.395 17.9661 13.737 17.7271C13.5726 17.6671 13.42 17.5787 13.286 17.4661C12.75 17.0161 12.75 16.0621 12.75 14.1521C12.75 12.2421 12.75 11.2871 13.286 10.8381C13.42 10.7258 13.5727 10.6378 13.737 10.5781C14.394 10.3381 15.221 10.8161 16.875 11.7701Z"
                       fill="url(#paint1_linear_19_496)"
                       stroke="url(#paint2_linear_19_496)"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     />
                     <defs>
                       <linearGradient
@@ -316,8 +316,8 @@ const EarningSummaryChart = () => {
                         y2="15.6521"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#FF7DD0" />
-                        <stop offset="1" stop-color="#F7009E" />
+                        <stop stopColor="#FF7DD0" />
+                        <stop offset="1" stopColor="#F7009E" />
                       </linearGradient>
                       <linearGradient
                         id="paint1_linear_19_496"
@@ -327,8 +327,8 @@ const EarningSummaryChart = () => {
                         y2="17.788"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#FF7DD0" />
-                        <stop offset="1" stop-color="#F7009E" />
+                        <stop stopColor="#FF7DD0" />
+                        <stop offset="1" stopColor="#F7009E" />
                       </linearGradient>
                       <linearGradient
                         id="paint2_linear_19_496"
@@ -338,8 +338,8 @@ const EarningSummaryChart = () => {
                         y2="17.788"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#FF7DD0" />
-                        <stop offset="1" stop-color="#F7009E" />
+                        <stop stopColor="#FF7DD0" />
+                        <stop offset="1" stopColor="#F7009E" />
                       </linearGradient>
                     </defs>
                   </svg>
@@ -364,26 +364,26 @@ const EarningSummaryChart = () => {
                     fill="none"
                   >
                     <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
+                      fillRule="evenodd"
+                      clipRule="evenodd"
                       d="M11 9.9563C11 7.19488 13.2386 4.9563 16 4.9563C18.7614 4.9563 21 7.19488 21 9.9563C21 12.7177 18.7614 14.9563 16 14.9563C13.2386 14.9563 11 12.7177 11 9.9563Z"
                       fill="url(#paint0_linear_0_2785)"
                     />
                     <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
+                      fillRule="evenodd"
+                      clipRule="evenodd"
                       d="M21 13.9563C21 11.7472 22.7909 9.9563 25 9.9563C27.2091 9.9563 29 11.7472 29 13.9563C29 16.1654 27.2091 17.9563 25 17.9563C22.7909 17.9563 21 16.1654 21 13.9563Z"
                       fill="url(#paint1_linear_0_2785)"
                     />
                     <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
+                      fillRule="evenodd"
+                      clipRule="evenodd"
                       d="M3 13.9563C3 11.7472 4.79086 9.9563 7 9.9563C9.20914 9.9563 11 11.7472 11 13.9563C11 16.1654 9.20914 17.9563 7 17.9563C4.79086 17.9563 3 16.1654 3 13.9563Z"
                       fill="url(#paint2_linear_0_2785)"
                     />
                     <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
+                      fillRule="evenodd"
+                      clipRule="evenodd"
                       d="M8.41315 21.113C10.0104 18.6155 12.8111 16.9563 16 16.9563C19.1893 16.9563 21.9903 18.6159 23.5875 21.1139C24.6917 22.8409 25.1694 24.9232 24.9453 26.9535C24.9103 27.2708 24.7259 27.5523 24.449 27.7112C21.9592 29.1398 19.0734 29.9563 16 29.9563C12.9266 29.9563 10.0408 29.1398 7.55099 27.7112C7.27412 27.5523 7.08973 27.2708 7.05471 26.9535C6.83058 24.9228 7.30855 22.8401 8.41315 21.113Z"
                       fill="url(#paint3_linear_0_2785)"
                     />
@@ -404,8 +404,8 @@ const EarningSummaryChart = () => {
                         y2="29.9563"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#FF7DD0" />
-                        <stop offset="1" stop-color="#F7009E" />
+                        <stop stopColor="#FF7DD0" />
+                        <stop offset="1" stopColor="#F7009E" />
                       </linearGradient>
                       <linearGradient
                         id="paint1_linear_0_2785"
@@ -415,8 +415,8 @@ const EarningSummaryChart = () => {
                         y2="29.9563"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#FF7DD0" />
-                        <stop offset="1" stop-color="#F7009E" />
+                        <stop stopColor="#FF7DD0" />
+                        <stop offset="1" stopColor="#F7009E" />
                       </linearGradient>
                       <linearGradient
                         id="paint2_linear_0_2785"
@@ -426,8 +426,8 @@ const EarningSummaryChart = () => {
                         y2="29.9563"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#FF7DD0" />
-                        <stop offset="1" stop-color="#F7009E" />
+                        <stop stopColor="#FF7DD0" />
+                        <stop offset="1" stopColor="#F7009E" />
                       </linearGradient>
                       <linearGradient
                         id="paint3_linear_0_2785"
@@ -437,8 +437,8 @@ const EarningSummaryChart = () => {
                         y2="29.9563"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#FF7DD0" />
-                        <stop offset="1" stop-color="#F7009E" />
+                        <stop stopColor="#FF7DD0" />
+                        <stop offset="1" stopColor="#F7009E" />
                       </linearGradient>
                       <linearGradient
                         id="paint4_linear_0_2785"
@@ -448,8 +448,8 @@ const EarningSummaryChart = () => {
                         y2="29.9563"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#FF7DD0" />
-                        <stop offset="1" stop-color="#F7009E" />
+                        <stop stopColor="#FF7DD0" />
+                        <stop offset="1" stopColor="#F7009E" />
                       </linearGradient>
                       <linearGradient
                         id="paint5_linear_0_2785"
@@ -459,8 +459,8 @@ const EarningSummaryChart = () => {
                         y2="29.9563"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#FF7DD0" />
-                        <stop offset="1" stop-color="#F7009E" />
+                        <stop stopColor="#FF7DD0" />
+                        <stop offset="1" stopColor="#F7009E" />
                       </linearGradient>
                     </defs>
                   </svg>
